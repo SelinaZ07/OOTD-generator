@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment variables and API keys
+.env
+.env.local
+.env.*.local
+
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
+# Uploaded clothing images
+server/uploads/
+
+# Build files
+dist/
+build/
+
+# Debug/log files
+*.log
+
+# OS-generated files
+.DS_Store
+Thumbs.db
