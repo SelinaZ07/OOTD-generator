@@ -1,6 +1,6 @@
 # 👗 OOTD Generator
 
-A full-stack outfit generator that recommends a random outfit from your wardrobe based on the current weather.
+A full-stack outfit generator that recommends a random outfit from your wardrobe based on the weather of the day.
 
 The application allows users to upload clothing items, stores them in a SQLite database, retrieves live weather information using WeatherAPI, and automatically selects a top and bottom that fit the current temperature.
 
@@ -32,15 +32,11 @@ The application allows users to upload clothing items, stores them in a SQLite d
 
 - Displays inspiration photos from Pinterest the user uploaded.
 - Allows users to browse through different inspiration images.
-- Uses a layered/stacked visual effect to create a 3D appearance.
 
 ### Wardrobe Notes
 
 - Users can write notes about clothing they want or need.
 - Notes are saved using browser Local Storage.
-- Each user's notes are stored separately in their own browser.
-- Notes remain available after refreshing or reopening the website.
-
 
 ---
 
@@ -71,41 +67,6 @@ The application allows users to upload clothing items, stores them in a SQLite d
 ### APIs
 
 - WeatherAPI
-
----
-
-# Project Structure
-
-The project is organized into a frontend and backend.
-
-```text
-OOTD-generator/
-│
-├── client/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── ...
-│
-├── server/
-│   ├── database/
-│   │   ├── database.js
-│   │   └── wardrobe.db
-│   │
-│   ├── routes/
-│   │   ├── clothing.js
-│   │   ├── outfit.js
-│   │   ├── upload.js
-│   │   └── weather.js
-│   │
-│   ├── uploads/
-│   ├── .env
-│   ├── server.js
-│   ├── package.json
-│   └── ...
-│
-└── README.md
-```
 
 ---
 
@@ -158,7 +119,7 @@ You only need to run this command the first time you set up the project.
 
 ---
 
-## 4. Install SQLite
+### 4. Install SQLite
 
 This project uses SQLite to store information about clothing items.
 
@@ -200,7 +161,7 @@ Both need to be running at the same time.
 
 ---
 
-## 10. Start the Backend
+## 1. Start the Backend
 
 Open a terminal.
 
@@ -213,7 +174,7 @@ Do not close the backend while using the application.
 
 ---
 
-## 13. Start the Frontend (second terminal)
+## 2. Start the Frontend (second terminal)
 
 Keep the backend terminal running.
 
@@ -227,7 +188,7 @@ npm run dev
 
 # Using the Application
 
-## 1. Add Clothing to Your Wardrobe
+## Add Clothing to Your Wardrobe
 
 Open the Admin page from the application.
 
@@ -238,15 +199,15 @@ You will need to enter information about the clothing item.
 
 ---
 
-## 2. Upload inspiration photos
+## Upload inspiration photos
 
 Upload outfit photos from Pinterest to the `assets/` folder
 
-## 3. Get the weather
+## Get the weather
 
 Change the city in the `weather.js` file to your own city.
 
-## 4. Generate Outfit
+## Generate Outfit
 Click the "generate outfit" button to get an outfit!
 
 
