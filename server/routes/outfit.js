@@ -2,13 +2,13 @@ import express from "express";
 import axios from "axios";
 import supabase from "../database/supabase.js";
 
-const city = "Seattle";
 const router = express.Router();
 
 //get outfit (return one top and one bottom)
 router.get("/", async (req,res) =>{
 
     try {
+        const city = "Seattle";
         //get live weather from the weather API
         const weatherResponse = await axios.get(
             `https://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${city}`
