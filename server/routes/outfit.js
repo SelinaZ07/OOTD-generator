@@ -2,6 +2,7 @@ import express from "express";
 import axios from "axios";
 import supabase from "../database/supabase.js";
 
+const city = "Seattle";
 const router = express.Router();
 
 //get outfit (return one top and one bottom)
