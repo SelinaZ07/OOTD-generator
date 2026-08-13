@@ -10,7 +10,7 @@ router.get("/", async (req,res) =>{
     try {
         //get live weather from the weather API
         const weatherResponse = await axios.get(
-            `http://localhost:3000/weather`
+            `https://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${city}`
         );
 
         const currentTemp = weatherResponse.data.temperature;
