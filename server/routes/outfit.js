@@ -14,7 +14,7 @@ router.get("/", async (req,res) =>{
             `https://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${city}`
         );
 
-        const currentTemp = weatherResponse.data.temperature;
+        const currentTemp = weatherResponse.data.current.temp_f;
         console.log("Current temperature:", currentTemp);
 
         //find clothing items in temperature range
