@@ -17,7 +17,7 @@ function Home() {
 
     //Fetch weather from backend
     useEffect(()=>{
-        fetch("http://localhost:3000/weather")
+        fetch(`${import.meta.env.VITE_API_URL}/weather`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
@@ -32,7 +32,7 @@ function Home() {
     async function generateOutfit() {
         console.log("Generate button clicked");
         try {
-            const response = await fetch("http://localhost:3000/outfit");
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/outfit`);
             const data = await response.json();
             console.log("OUTFIT DATA:", data);
 

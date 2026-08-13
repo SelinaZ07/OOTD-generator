@@ -17,7 +17,7 @@ function Admin() {
   //load every clothing item from the backend
   function loadClothing() {
 
-    fetch("http://localhost:3000/clothing")
+    fetch(`${import.meta.env.VITE_API_URL}/clothing`)
       //convert the server response into Javascript data
       .then((response) => response.json())
       //store data into react state
@@ -51,7 +51,7 @@ function Admin() {
     try {
 
       // Send the data to the backend
-      const response = await fetch("http://localhost:3000/upload", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -189,7 +189,7 @@ function Admin() {
           marginTop: "15px",
           borderRadius: "10px"}}>
           {/*display the clothing image*/}
-          <img src={item.imageUrl}
+          <img src={`${import.meta.env.VITE_API_URL}/uploads/${item.filename}`}
           alt={item.filename}
           width="150"/>
 
