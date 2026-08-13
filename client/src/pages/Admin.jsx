@@ -189,7 +189,7 @@ function Admin() {
           marginTop: "15px",
           borderRadius: "10px"}}>
           {/*display the clothing image*/}
-          <img src={`${import.meta.env.VITE_API_URL}/uploads/${item.filename}`}
+          <img src={item.imageUrl}
           alt={item.filename}
           width="150"/>
 
