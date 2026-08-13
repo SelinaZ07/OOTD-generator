@@ -81,7 +81,7 @@ function Admin() {
 
     try{
       const response = await fetch(
-        `http://localhost:3000/clothing/${id}`,
+        `${import.meta.env.VITE_API_URL}/clothing/${id}`,
         {
           method:"DELETE",
         }
