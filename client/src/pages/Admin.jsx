@@ -83,7 +83,7 @@ function Admin() {
       const response = await fetch(
         `http://localhost:3000/clothing/${id}`,
         {
-          method:"Delete",
+          method:"DELETE",
         }
       );
 
@@ -189,7 +189,7 @@ function Admin() {
           marginTop: "15px",
           borderRadius: "10px"}}>
           {/*display the clothing image*/}
-          <img src={`http://localhost:3000/uploads/${item.filename}`}
+          <img src={item.imageUrl}
           alt={item.filename}
           width="150"/>
 
@@ -198,7 +198,7 @@ function Admin() {
           </p>
 
           <p>
-            <strong>Temperature:</strong> {item.minTemp}°F - {item.maxTemp}°F
+            <strong>Temperature:</strong> {item.min_temp}°F - {item.max_temp}°F
           </p>
           <button onClick={()=>deleteClothing(item.id)}>
             Delete

@@ -1,56 +1,129 @@
 import express from "express";
-import multer from "multer"; //handle image uploads
-import db from "../database/database.js";
+import multer from "multer";
+import supabase from "../database/supabase.js";
 
-const router =express.Router();
+const router = express.Router();
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/");
-    },
 
-    filename: (req, file, cb) => {
-        const uniqueName = Date.now() + "-" + file.originalname;
-        cb(null, uniqueName);
+// Store the uploaded image temporarily in memory
+const storage = multer.memoryStorage();
+
+const upload = multer({ storage });
+
+
+// Upload one clothing image
+router.post("/", upload.single("image"), async (req, res) => {
+
+    try {
+
+        // Make sure an image was uploaded
+        if (!req.file) {
+            return res.status(400).json({
+                message: "No image uploaded."
+            });
+        }
+
+
+        // Get information from the frontend
+        const type = req.body.type;
+        const minTemp = req.body.minTemp;
+        const maxTemp = req.body.maxTemp;
+
+
+        // Create a unique filename
+        const filename =
+            Date.now() + "-" + req.file.originalname;
+
+
+        // Upload image to Supabase Storage
+        const { error: uploadError } = await supabase
+            .storage
+            .from("clothing-images")
+            .upload(filename, req.file.buffer, {
+                contentType: req.file.mimetype,
+                upsert: false
+            });
+
+
+        // Check if image upload failed
+        if (uploadError) {
+            console.error(
+                "Supabase Storage upload error:",
+                uploadError
+            );
+
+            return res.status(500).json({
+                message: "Image upload failed.",
+                error: uploadError.message
+            });
+        }
+
+
+        // Get the public URL for the image
+        const { data: publicUrlData } = supabase
+            .storage
+            .from("clothing-images")
+            .getPublicUrl(filename);
+
+        const imageUrl = publicUrlData.publicUrl;
+
+
+        // Save clothing information in Supabase database
+        const { data, error: databaseError } = await supabase
+            .from("clothing")
+            .insert([
+                {
+                    filename: filename,
+                    type: type,
+                    min_temp: minTemp,
+                    max_temp: maxTemp
+                }
+            ])
+            .select()
+            .single();
+
+
+        // If database insertion failed
+        if (databaseError) {
+
+            console.error(
+                "Supabase database error:",
+                databaseError
+            );
+
+
+            // Delete the image from Storage
+            // so we don't leave an unused image behind
+            await supabase
+                .storage
+                .from("clothing-images")
+                .remove([filename]);
+
+
+            return res.status(500).json({
+                message: "Could not save clothing information.",
+                error: databaseError.message
+            });
+        }
+
+
+        // Everything was successful
+        res.json({
+            message: "Clothing uploaded successfully!",
+            clothing: data,
+            imageUrl: imageUrl
+        });
+
+    } catch (error) {
+
+        console.error("Upload error:", error);
+
+        res.status(500).json({
+            message: "Server error.",
+            error: error.message
+        });
     }
 });
 
-const upload = multer({storage});
-
-//upload one clothing image
-router.post("/", upload.single("image"),(req,res)=>{
-
-    //get the information from the frontend
-    const filename = req.file.filename;
-    const type = req.body.type;
-    const minTemp = req.body.minTemp;
-    const maxTemp = req.body.maxTemp;
-
-    const sql = `
-    INSERT INTO clothing
-    (filename, type, minTemp, maxTemp)
-    VALUES (?,?,?,?)`;
-
-    //save the clothing item into SQLite
-    db.run(
-        sql,
-        [filename, type, minTemp, maxTemp],
-        function(err){
-            if (err){
-                console.error(err);
-                return res.status(500).json({
-                    message: "Database error."
-                });
-            }
-
-            res.json({
-                message: "clothing uploaded successfully!",
-                id: this.lastId,
-                filename, type, minTemp, maxTemp
-            });
-        }
-    );
-
-});
 
 export default router;

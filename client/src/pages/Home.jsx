@@ -86,7 +86,7 @@ function Home() {
                         {/* Display the generated top or a placeholder */}
                         <div className="clothing-placeholder top">
                             {outfit ? (
-                                <img src={`http://localhost:3000/uploads/${outfit.top.filename}`}
+                                <img src={outfit.top.imageUrl}
                                 alt="Top" className="clothing-image"/>
                             ) : (
                                 "Top Image"
@@ -95,7 +95,7 @@ function Home() {
                         {/* Display the generated bottom or a placeholder */}
                         <div className="clothing-placeholder bottom">
                             {outfit ? (
-                                <img src={`http://localhost:3000/uploads/${outfit.bottom.filename}`}
+                                <img src={outfit.bottom.imageUrl}
                                 alt="Bottom" className="clothing-image"/>
                             ):(
                                 "Bottom Image"
