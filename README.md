@@ -2,7 +2,7 @@
 
 A full-stack outfit generator that recommends a random outfit from your wardrobe based on the weather of the day.
 
-The application allows users to upload clothing items, stores them in a SQLite database, retrieves live weather information using WeatherAPI, and automatically selects a top and bottom that fit the current temperature.
+The application allows users to upload clothing items, stores them in a Supabase database, retrieves live weather information using WeatherAPI, and automatically selects a top and bottom that fit the current temperature.
 
 ## Features
 
@@ -62,7 +62,7 @@ The application allows users to upload clothing items, stores them in a SQLite d
 
 ### Database
 
-- SQLite
+- Supabase
 
 ### APIs
 
