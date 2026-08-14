@@ -3,6 +3,7 @@
 A full-stack outfit generator that recommends a random outfit from your wardrobe based on the weather of the day.
 
 The application allows users to upload clothing items, stores them in a Supabase database, retrieves live weather information using WeatherAPI, and automatically selects a top and bottom that fit the current temperature.
+Check out the live site demo here: `https://ootd-generator-ci6zo149o-thinkingbeyond-educations-projects.vercel.app/`
 
 ## Features
 
