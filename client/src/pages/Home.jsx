@@ -80,7 +80,7 @@ function Home() {
                     <InspirationCarousel/>
                 </div>
                 
-                {/* Generated outfit display */}
+                {/* Display setting for the generated outfit */}
                 <div className="right-column">
                     <div className="outfit-section">
                         {/* Display the generated top or a placeholder */}

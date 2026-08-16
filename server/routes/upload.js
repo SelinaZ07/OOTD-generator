@@ -5,7 +5,7 @@ import supabase from "../database/supabase.js";
 const router = express.Router();
 
 
-// Store the uploaded image temporarily in memory
+// store the uploaded image temporarily in memory
 const storage = multer.memoryStorage();
 
 const upload = multer({ storage });
@@ -16,7 +16,6 @@ router.post("/", upload.single("image"), async (req, res) => {
 
     try {
 
-        // Make sure an image was uploaded
         if (!req.file) {
             return res.status(400).json({
                 message: "No image uploaded."
@@ -30,7 +29,7 @@ router.post("/", upload.single("image"), async (req, res) => {
         const maxTemp = req.body.maxTemp;
 
 
-        // Create a unique filename
+        // create a unique filename for each uploads
         const filename =
             Date.now() + "-" + req.file.originalname;
 
@@ -45,7 +44,6 @@ router.post("/", upload.single("image"), async (req, res) => {
             });
 
 
-        // Check if image upload failed
         if (uploadError) {
             console.error(
                 "Supabase Storage upload error:",
@@ -83,7 +81,6 @@ router.post("/", upload.single("image"), async (req, res) => {
             .single();
 
 
-        // If database insertion failed
         if (databaseError) {
 
             console.error(
@@ -92,8 +89,7 @@ router.post("/", upload.single("image"), async (req, res) => {
             );
 
 
-            // Delete the image from Storage
-            // so we don't leave an unused image behind
+            // Delete the selected clothing from the db
             await supabase
                 .storage
                 .from("clothing-images")
@@ -107,7 +103,6 @@ router.post("/", upload.single("image"), async (req, res) => {
         }
 
 
-        // Everything was successful
         res.json({
             message: "Clothing uploaded successfully!",
             clothing: data,

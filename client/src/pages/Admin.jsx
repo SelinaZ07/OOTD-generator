@@ -6,7 +6,7 @@ function Admin() {
   // Store the selected image
   const [image, setImage] = useState(null);
 
-  // Store whether the clothing is a top or bottom
+  // Store the clothing item type (top/bottom)
   const [type, setType] = useState("top");
 
   // Store the temperature range
@@ -33,7 +33,6 @@ function Admin() {
   // Upload the clothing item to the backend
   async function uploadClothing() {
 
-    // Make sure the user selected an image
     if (!image) {
       alert("Please select an image first.");
       return;
@@ -56,7 +55,7 @@ function Admin() {
         body: formData,
       });
 
-      const data = await response.json();//convery into javascript data
+      const data = await response.json();//convert into javascript data
 
       alert(data.message);
       loadClothing();//refresh wardrobe after uploading
@@ -74,7 +73,7 @@ function Admin() {
       "Are you sure you want to delete this item?"
     );
 
-    //double confirmation, stop if the user choose cancel
+    //double confirmation, stop if usered clicked cancel
     if (!confirmDelete) {
       return;
     }
@@ -99,7 +98,7 @@ function Admin() {
     }
   }
 
-  //load the wardrobe when the admin page first opens
+  //load the wardrobe
   useEffect (()=>{
     loadClothing();
   }, []);
@@ -108,7 +107,7 @@ function Admin() {
     <div className="admin-page">
       <h1>Wardrobe Upload</h1>
 
-      {/* Image picker */}
+      {/* image picker that open up files */}
       <label>
         Clothing Image
       </label>
@@ -121,7 +120,6 @@ function Admin() {
 
       <br /><br />
 
-      {/* Clothing type */}
       <label>Clothing Type</label>
 
       <br />
@@ -145,8 +143,6 @@ function Admin() {
       Bottom
 
       <br /><br />
-
-      {/* Minimum temperature */}
       <label>Minimum Temperature (°F)</label>
 
       <br />
@@ -159,7 +155,6 @@ function Admin() {
 
       <br /><br />
 
-      {/* Maximum temperature */}
       <label>Maximum Temperature (°F)</label>
 
       <br />

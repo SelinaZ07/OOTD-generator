@@ -9,7 +9,7 @@ function ShoppingNotes(){
     useEffect(()=>{
         const saveNotes = localStorage.getItem("shoppingNotes");
 
-        //restore he saved notes if they exist
+        //restore the saved notes if they exist
         if (saveNotes){
             setNotes(saveNotes);
         }
