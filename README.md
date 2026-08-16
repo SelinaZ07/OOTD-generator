@@ -119,7 +119,7 @@ If you also want to use Supabase for clothing item storage, go to https://supaba
 If you also want to use WeatherAPI to get the weather, go to https://www.weatherapi.com/ to create a new API key and paste it into your `.env` file
 
 
-# Running the Project
+## Running the Project
 
 The project has two separate parts:
 
@@ -128,7 +128,7 @@ The project has two separate parts:
 
 Both need to be running at the same time.
 
-## 1. Start the Backend
+### 1. Start the Backend
 
 Open a terminal.
 
@@ -139,7 +139,7 @@ npm run dev
 
 Do not close the backend while using the application.
 
-## 2. Start the Frontend (second terminal)
+### 2. Start the Frontend (second terminal)
 
 Keep the backend terminal running.
 
@@ -149,9 +149,9 @@ npm run dev
 ```
 
 
-# Using the Application
+## Using the Application
 
-## Add Clothing to Your Wardrobe
+### Add Clothing to Your Wardrobe
 
 Open the Admin page from the application.
 
@@ -161,15 +161,15 @@ You will need to enter information about the clothing item.
 
 Note: this can only be done by the admin.
 
-## Upload inspiration photos
+### Upload inspiration photos
 
 Upload outfit photos from Pinterest to the `assets/` folder
 
-## Get the weather
+### Get the weather
 
 Change the city in the `weather.js` file to your own city.
 
-## Generate Outfit
+### Generate Outfit
 Click the "generate outfit" button to get an outfit!
 
 
