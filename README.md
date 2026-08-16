@@ -1,6 +1,7 @@
 # OOTD Generator
 
 I made this outfit generator webpage to help me pick out an outfit based on the current weather of the location the user set. I realized that I often forget many of the pieces I have in my closet and struggle to find an outfit that I like. 
+Check out the live site demo here: https://ootd-generator.vercel.app/
 
 ## Features
 
