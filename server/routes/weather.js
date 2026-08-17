@@ -1,14 +1,14 @@
 import express from "express";
 import axios from "axios";
 
-const router = express.Router();
+const router =express.Router();
 
 //fetch the current weather information
 router.get("/", async (req, res) => {
   try {
 
     console.log("Weather API Key:", process.env.WEATHER_API_KEY);
-    const city = "Seattle"; //city location
+    const city ="Seattle"; //city location
 
     const response = await axios.get(
       `https://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${city}`
@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
     console.error(error);
 
     res.status(500).json({
-      error: "Unable to fetch weather."
+      error: "Can't get the weather."
     });
   }
 });

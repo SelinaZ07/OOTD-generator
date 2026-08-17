@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/", async (req,res) =>{
 
     try {
-        const city = "Seattle";
+        const city ="Seattle";
         //get live weather from the weather API
         const weatherResponse = await axios.get(
             `https://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${city}`
@@ -26,17 +26,17 @@ router.get("/", async (req,res) =>{
             console.error("Supabase error:", error);
 
             return res.status(500).json({
-                message: "Database error.",
+                message:"Database error.",
                 error: error.message
             });
         }
 
         //separate into tops and bottoms
-        const tops = clothing.filter(item => item.type ==="top");
-        const bottoms = clothing.filter(item => item.type === "bottom");
+        const tops= clothing.filter(item => item.type ==="top");
+        const bottoms= clothing.filter(item => item.type === "bottom");
 
         //make sure there's at least one top and a bottom
-        if (tops.length===0 || bottoms.length ===0) {
+        if (tops.length===0 || bottoms.length ===0){
             return res.status(404).json({
                 message: "Not enough clothing for today's weather."
             });
@@ -56,20 +56,18 @@ router.get("/", async (req,res) =>{
 
         //return the outfit
         res.json({
-            temperature: currentTemp,
-            top:{
-                ...top,
+            temperature:currentTemp,
+            top:{...top,
                 imageUrl: topUrlData.publicUrl
             },
-            bottom: {
-                ...bottom,
+            bottom: {...bottom,
                 imageUrl: bottomUrlData.publicUrl
             }
         });
     } catch(error){
         console.error("Outfit error:",error);
         res.status(500).json({
-            message: "Couldn't get outfit data.",
+            message:"Couldn't get outfit data.",
             error: error.message
         });
     }

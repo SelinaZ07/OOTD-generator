@@ -17,7 +17,7 @@ function ShoppingNotes(){
 
     return(
         <div className="notes-paper">
-            <h2>📝 Wardrobe Wishlist</h2>
+            <h2>Wardrobe Wishlist</h2>
 
             <textarea placeholder="Things I want to buy:"
             value={notes} onChange={(e)=>setNotes(e.target.value)}/>

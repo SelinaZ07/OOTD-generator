@@ -6,7 +6,7 @@ const router = express.Router();
 // Get all clothing items from Supabase
 router.get("/", async (req, res) => {
     try {
-        const { data, error } = await supabase
+        const {data, error} =await supabase
             .from("clothing")
             .select("*")
             .order("id", { ascending: false });
@@ -15,20 +15,19 @@ router.get("/", async (req, res) => {
             console.error("Supabase error:", error);
 
             return res.status(500).json({
-                message: "Database error",
+                message:"Database error",
                 error: error.message
             });
         }
 
         // Add Supabase Storage URL to every clothing item
-        const clothingWithUrls = data.map((item) => {
-            const { data: publicUrlData } = supabase
+        const clothingWithUrls = data.map((item)=>{
+            const {data: publicUrlData} = supabase
                 .storage
                 .from("clothing-images")
                 .getPublicUrl(item.filename);
 
-            return {
-                ...item,
+            return {...item,
                 imageUrl: publicUrlData.publicUrl
             };
         });
@@ -36,7 +35,7 @@ router.get("/", async (req, res) => {
         res.json(clothingWithUrls);
 
     } catch (error) {
-        console.error("Server error:", error);
+        console.error("Server error:",error);
 
         res.status(500).json({
             message: "Server error",

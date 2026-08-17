@@ -23,7 +23,7 @@ function InspirationCarousel(){
 
     return(
         <div className="inspiration-container">
-            <h2>Style Inspiration ✨</h2>
+            <h2>Style Inspiration</h2>
             <div className="carousel-wrapper">
                 <button className="arrow-btn left-arrow" onClick={previousImage}>
                     <FaChevronLeft/>

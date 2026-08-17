@@ -16,8 +16,7 @@ function Home() {
     const [outfit, setOutfit] = useState(null);
 
     //Fetch weather from backend
-    useEffect(()=>{
-        fetch(`${import.meta.env.VITE_API_URL}/weather`)
+    useEffect(()=>{fetch(`${import.meta.env.VITE_API_URL}/weather`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
@@ -46,7 +45,7 @@ function Home() {
             
         } catch (error) {
                 console.error(error);
-                alert("Unable to generate outfit.");
+                alert("Can't generate outfit.");
             }
     }
     return (
@@ -64,7 +63,7 @@ function Home() {
                 </div>
 
                 <div className="middle-section">
-                    <img src={avatar} alt="Avatar" className="avatar"/>
+                    <img src={avatar} alt="my headshot img" className="avatar"/>
                 </div>
 
                 <div className="right-section">
@@ -87,7 +86,7 @@ function Home() {
                         <div className="clothing-placeholder top">
                             {outfit ? (
                                 <img src={outfit.top.imageUrl}
-                                alt="Top" className="clothing-image"/>
+                                alt="Top outfit img" className="clothing-image"/>
                             ) : (
                                 "Top Image"
                             )}
@@ -96,7 +95,7 @@ function Home() {
                         <div className="clothing-placeholder bottom">
                             {outfit ? (
                                 <img src={outfit.bottom.imageUrl}
-                                alt="Bottom" className="clothing-image"/>
+                                alt="Bottom outfit img" className="clothing-image"/>
                             ):(
                                 "Bottom Image"
                             )}

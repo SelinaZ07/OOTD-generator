@@ -3,45 +3,44 @@ import { useState, useEffect } from "react";
 
 function Admin() {
 
-  // Store the selected image
+  // Store the choosen  image in useState
   const [image, setImage] = useState(null);
 
-  // Store the clothing item type (top/bottom)
+  // clothing item type (top/bottom)
   const [type, setType] = useState("top");
 
-  // Store the temperature range
+  // temperature range
   const [minTemp, setMinTemp] = useState("");
   const [maxTemp, setMaxTemp] = useState("");
   const [clothing, setClothing] = useState([]);
 
-  //load every clothing item from the backend
+  //This function loads every clothing item from the backend
   function loadClothing() {
 
     fetch(`${import.meta.env.VITE_API_URL}/clothing`)
       //convert the server response into Javascript data
-      .then((response) => response.json())
+      .then((response) =>response.json())
       //store data into react state
       .then((data) => {
         setClothing(data);
       })
-      .catch((error) => {
+      .catch((error) =>{
         console.error(error);
       });
 
   }
 
-  // Upload the clothing item to the backend
+  // This function sned clothing item to the backend
   async function uploadClothing() {
 
     if (!image) {
-      alert("Please select an image first.");
+      alert("Need to select an image!!");
       return;
     }
 
-    // Create a FormData object to send files
-    const formData = new FormData();
-
-    // Add each piece of information
+    
+    const formData = new FormData();//helps with sending files
+    //the 4 info we need
     formData.append("image", image);
     formData.append("type", type);
     formData.append("minTemp", minTemp);
@@ -50,7 +49,8 @@ function Admin() {
     try {
 
       // Send the data to the backend
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/upload`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/upload`, 
+        {
         method: "POST",
         body: formData,
       });

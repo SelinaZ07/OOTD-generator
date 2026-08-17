@@ -8,17 +8,17 @@ const router = express.Router();
 // store the uploaded image temporarily in memory
 const storage = multer.memoryStorage();
 
-const upload = multer({ storage });
+const upload = multer({storage});
 
 
 // Upload one clothing image
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", upload.single("image"), async (req,res) => {
 
     try {
 
         if (!req.file) {
             return res.status(400).json({
-                message: "No image uploaded."
+                message:"No image in the database."
             });
         }
 
@@ -30,12 +30,12 @@ router.post("/", upload.single("image"), async (req, res) => {
 
 
         // create a unique filename for each uploads
-        const filename =
+        const filename=
             Date.now() + "-" + req.file.originalname;
 
 
         // Upload image to Supabase Storage
-        const { error: uploadError } = await supabase
+        const {error: uploadError} = await supabase
             .storage
             .from("clothing-images")
             .upload(filename, req.file.buffer, {
@@ -46,12 +46,12 @@ router.post("/", upload.single("image"), async (req, res) => {
 
         if (uploadError) {
             console.error(
-                "Supabase Storage upload error:",
+                "Supabase upload error:",
                 uploadError
             );
 
             return res.status(500).json({
-                message: "Image upload failed.",
+                message:"Image upload failed.",
                 error: uploadError.message
             });
         }
@@ -104,7 +104,7 @@ router.post("/", upload.single("image"), async (req, res) => {
 
 
         res.json({
-            message: "Clothing uploaded successfully!",
+            message: "Clothing item uploaded successfully!",
             clothing: data,
             imageUrl: imageUrl
         });
