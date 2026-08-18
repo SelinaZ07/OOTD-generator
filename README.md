@@ -11,8 +11,9 @@ Check out the live site demo here: https://ootd-generator.vercel.app/
 - Displays the city (set by the user), current temperature, and weather condition.
 
 ### Supabase Wardrobe Storage
+Note: This feature is for admin only, and will not be seen or used by the user on the deployed version. Clone this project and run http://localhost:5173/admin on your local PC to access the upload page.
 
-- Admin upload clothing images through a backend admin page.
+- Admin upload clothing images through a backend admin page. 
 - Upload clothing image form will ask for:
   - Tops
   - Bottoms
@@ -28,7 +29,7 @@ Check out the live site demo here: https://ootd-generator.vercel.app/
 
 ### Inspiration Carousel
 
-- Displays outfit inspirational photos from Pinterest the user(me) uploaded.
+- Displays outfit inspirational photos from Pinterest the admin(me) uploaded to the assets folder.
 - User can browse through the inspo photos using the arrow button.
 
 ### Wardrobe Notes
